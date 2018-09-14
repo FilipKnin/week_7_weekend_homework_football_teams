@@ -12,6 +12,14 @@ SelectView.prototype.bindEvents = function () {
     console.log('SelectView has areasNames:', areasNames);
     console.log(this);
     this.populate(areasNames);
+
+    this.container.addEventListener('change', (event) => {
+      console.log('change event.target.value:', event.target.value);
+      const selectedArea = event.target.value;
+      console.log('change selectedArea:', selectedArea);
+      PubSub.publish('SelecView:selected-area-name', selectedArea);
+    })
+
   });
 
   SelectView.prototype.populate = function (areasNames) {
