@@ -22,7 +22,7 @@ Competitions.prototype.getAreasData = function () {
       // console.log('Competitions.getAreasData has this.areasData:', this.areasData);
       const areasNames = data.areas.map(area => area.name);
       // console.log('Competitions.getAreasData has areasNames:', areasNames);
-      PubSub.publish('Competitions:all-areas-names');
+      PubSub.publish('Competitions:all-areas-names', areasNames);
     })
     .catch((err) => {
       console.error(err);
