@@ -1,7 +1,7 @@
-const Teams = require('./models/teams.js');
+const Competitions = require('./models/competitions.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const teams = new Teams();
-  teams.bindEvents();
+  const competitions = new Competitions();
+  competitions.bindEvents();
 });
