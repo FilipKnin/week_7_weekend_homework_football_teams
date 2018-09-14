@@ -8,7 +8,7 @@ this.areasData = null
 };
 
 Competitions.prototype.bindEvents = function () {
-  console.log('competitions bindEvents exists');
+  // console.log('competitions bindEvents exists');
   this.getAreasData();
 };
 
@@ -17,8 +17,12 @@ Competitions.prototype.getAreasData = function () {
     const request = new Request(url);
     request.get({ "X-Auth-Token": API_KEY })
     .then((data) => {
-      this.areasData = data;
-      console.log(this.areasData)
+      // console.log('Competitions.getAreasData has data:', data);
+      this.areasData = data.areas;
+      // console.log('Competitions.getAreasData has this.areasData:', this.areasData);
+      const areasNames = data.areas.map(area => area.name);
+      // console.log('Competitions.getAreasData has areasNames:', areasNames);
+      PubSub.publish('Competitions:all-areas-names');
     })
     .catch((err) => {
       console.error(err);
