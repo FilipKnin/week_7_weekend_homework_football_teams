@@ -1,12 +1,12 @@
-const RequestHelper = function (url) {
+const Request = function (url) {
   this.url = url
 }
 
-RequestHelper.prototype.get = function () {
-  return fetch(this.url)
+Request.prototype.get = function (headers) { //headers - passing a header as an argumetn
+  return fetch(this.url, { headers: headers }) //two arguments "headers:" <= key; headers jako header ktory musze uzyc;
   .then(response => response.json());
 };
 
 
 
-module.exports = RequestHelper;
+module.exports = Request;

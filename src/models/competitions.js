@@ -3,7 +3,8 @@ const Request = require('../helpers/request_helper.js');
 const API_KEY = require('../helpers/api_key.js');
 
 const Competitions = function () {
-this.teams = null;
+this.competitionsData = null;
+this.areasData = null
 };
 
 Competitions.prototype.bindEvents = function () {
@@ -12,19 +13,17 @@ Competitions.prototype.bindEvents = function () {
 };
 
 Competitions.prototype.getAreasData = function () {
-  // const url = 'https://munroapi.herokuapp.com/api/munros';
-  //   const request = new Request(url);
-  //   request.get()
-  //   .then((data) => {
-  //     this.data = data;
-  //     const regionArray = data.map(munro => munro.region)
-  //     const filteredArray = [...new Set(regionArray)]
-  //     PubSub.publish('Munros:all-regions', filteredArray);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   })
-  // };
-};
+  const url = 'http://api.football-data.org/v2/areas';
+    const request = new Request(url);
+    request.get({ "X-Auth-Token": API_KEY })
+    .then((data) => {
+      this.areasData = data;
+      console.log(this.areasData)
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  };
+
 
 module.exports = Competitions;
